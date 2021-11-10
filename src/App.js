@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import logo from "./logo.svg";
 import './App.css';
+import BookFlight from "./components/BookFlight";
+import MyTrips from "./components/MyTrips";
+import Checkin from "./components/Checkin";
+import { Link } from "react-router-dom";
+import {useState} from 'react';
+import { Tab, Tabs, Container } from "react-bootstrap";
+import FlightStatus from './components/FlightStatus';
 
 function App() {
+  const [key, setKey] = useState('Book');
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="login-box">Login|Sign up</div>
+      <Container>
+      <Tabs
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+      color="var(--primary1)"
+      className="mb-3"
+    >
+      <Tab eventKey="Book" title="Book">
+        <BookFlight/>
+      </Tab>
+      <Tab eventKey="MyTrips" title="My Trips">
+        <MyTrips/>
+      </Tab>
+      <Tab eventKey="Check-in" title="Check-in">
+        {/* <Sonnet /> */}
+        <Checkin/>
+      </Tab>
+      <Tab eventKey="status" title="Flight status">
+        {/* <Sonnet /> */}
+        <FlightStatus/>
+      </Tab>
+    </Tabs>
+      </Container>
     </div>
   );
 }
